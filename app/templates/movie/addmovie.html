@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock title %} 
+
+{% block content %}
+<form method = "POST">
+    <h3 align="center">Movie Details</h3>
+
+    <div class="form-group">
+        <label for = "movie_name">Add movie</label>
+        <input 
+        type = "text"
+        class = "form-control"  
+        id = "movie_name"
+        name = "movie_name"  
+        placeholder = "Enter movie name"
+        />
+    </div>
+
+    <br/>
+    <button type = "submit" class = "btn btn-primary">Submit</button>
+</form>
+
+{% endblock content %}
