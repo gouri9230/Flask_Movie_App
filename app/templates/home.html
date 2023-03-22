@@ -3,11 +3,11 @@
 
 {% block content %}
 
-    <h1 align="center">Welcome {{ user.name }}, to your Movie World!</h1>
-        {% for movie in data %}    
-        <li class="movie-list-container"> {{ movie.title }}                               
-        </li>   
-        {% endfor %} 
+    <h1 align="center">Welcome {{ user.name }}, to your Movie World!</h1><br>
+        <h3><em>Pick any movie from the list and create your own favorite list</em></h3><br>
+            {% for movie in data %}    
+                <li class="movie-list-container"> {{ movie.title }}</li>   
+            {% endfor %} 
 
 
 {% endblock %}

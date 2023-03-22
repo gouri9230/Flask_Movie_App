@@ -39,7 +39,6 @@ def signup():
     
     return render_template("authentication/signup.html", user = current_user)
 
-@auth.route("/", methods = ["GET", "POST"])
 @auth.route("/login", methods = ["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -60,6 +59,7 @@ def login():
     return render_template("authentication/login.html", user = current_user)
 
 @auth.route('/home')
+@auth.route("/")
 @login_required
 def home():
     connection = req.urlopen(base_url)

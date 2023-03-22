@@ -2,8 +2,8 @@
 {% block title %} Movie Rank Details {% endblock title %} 
 
 {% block content %}
-
-<h1 align="center">Ranking of your movies</h1>
+<br>
+<h3 align="center"><strong>Ranking of your movies</strong></h3>
    {% for rank in ranks %}    
    <li class="list-group-item"> Movie : {{ rank.movie_name }} | Rank : {{ rank.rank}}     
     <a href = "{{ url_for('mov.modifyrank', id = rank.id) }}" class ="btn btn-outline-danger btn sm"> Modify  </a>   
