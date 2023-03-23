@@ -31,7 +31,7 @@ def addmovie():
 @login_required
 def movie():
     if request.method == "POST":
-        movie = request.form.get('movie_name')
+        movie = request.form.get('movie_name').lower()
         movie_details = {"puss in boots: the last wish":315162,
                           "m3gan":536554,
                           "shotgun wedding":758009,
@@ -39,24 +39,23 @@ def movie():
                           "troll":736526,
                           "the last of us":100088,
                           "knock at the cabin": 631842,
-                          "Black Panther: Wakanda Forever": 505642,
-                          "Plane": 646389, 
-                          "Shark Side of the Moon":1011679,
-                          "Little Dixie": 1058949,
-                          "Huesera: The Bone Woman": 772515,
-                          "Diabolik - Ginko all'attacco": 823999,
-                          "Bandit": 842942,
-                          "Ant-Man and the Wasp: Quantumania": 640146,
-                          "Lord of the Streets": 965839,
-                          "There Are No Saints": 267805,
-                          "Creed III": 677179,
-                          "Black Adam": 436270,
-                          "A Man Called Otto": 937278,
-                          "The Simpsons Meet the Bocellis in Feliz Navidad": 1058732,
-                          "Detective Knight: Independence": 1035806}
+                          "black panther: wakanda forever": 505642,
+                          "plane": 646389, 
+                          "shark side of the moon":1011679,
+                          "little dixie": 1058949,
+                          "huesera: the bone woman": 772515,
+                          "diabolik - ginko all'attacco": 823999,
+                          "bandit": 842942,
+                          "ant-man and the wasp: quantumania": 640146,
+                          "lord of the streets": 965839,
+                          "there are no saints": 267805,
+                          "black adam": 436270,
+                          "a man called otto": 937278,
+                          "the simpsons meet the bocellis in feliz navidad": 1058732,
+                          "detective knight: independence": 1035806}
         
-        if movie.lower() in movie_details.keys():
-            response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_details[movie.lower()]}?api_key={api_key}&language=en-US&page=1')
+        if movie in movie_details.keys():
+            response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_details[movie]}?api_key={api_key}&language=en-US&page=1')
             response_result = response.json()
             attribute_list = ['title','original_language','release_date','overview','budget','popularity']
             movie_dict = {}
@@ -64,7 +63,7 @@ def movie():
                 movie_dict[key] = response_result[key]
             return render_template("movie/movie.html", value = movie_dict, user = current_user)
         else:
-            flash("Please enter a valid movie name from the list",category='error')
+            flash("Please enter a valid movie name from the list or check spelling/spaces/special characters!",category='error')
         
     return render_template("movie/movie.html", user = current_user)
 
